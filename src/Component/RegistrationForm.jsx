@@ -56,6 +56,7 @@ const RegistrationForm = () => {
   };
 
   const handleSubmit = async (e) => {
+    console.log("clicked")
     e.preventDefault();
 
     const allFieldsFilled = Object.values(formData).every(val => val !== '');
@@ -81,11 +82,12 @@ const RegistrationForm = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(dataToSend),
           });
+          setFormData({ fullName: '',  email: '',  age: '',  dob: '', gender: '', address: '', country: '', city: '', pincode: '' });
 
       if (!response.ok) throw new Error('Failed to save data');
 
       toast.success(userId ? 'User updated successfully!' : 'Registration successful!');
-      setTimeout(() => navigate('/users'), 2000);
+      setTimeout(() => navigate('/users'),2000);
     } catch (error) {
       console.error('Error saving data:', error);
       toast.error('Failed to save data. Please try again.');
@@ -114,8 +116,8 @@ const RegistrationForm = () => {
                     name="fullName"
                     value={formData.fullName}
                     onChange={handleChange}
-                    required
                     placeholder="Enter your Name"
+                  
                   />
                 </div>
                 <div className="form-group">
@@ -150,7 +152,7 @@ const RegistrationForm = () => {
                     name="dob"
                     value={formData.dob}
                     onChange={handleChange}
-                    required
+                  
                   />
                 </div>
               </div>
