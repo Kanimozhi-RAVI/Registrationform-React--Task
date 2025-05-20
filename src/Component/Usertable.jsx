@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 
-// ✅ Correct API endpoint
 const API_URL = 'https://682abf55ab2b5004cb379014.mockapi.io/User';
 
 const UserTable = () => {
@@ -21,7 +20,7 @@ const UserTable = () => {
       setLoading(true);
       const res = await fetch(API_URL);
       const data = await res.json();
-      setUsers(data); // Shows newest first
+      setUsers(data); 
     } catch (error) {
       console.error('Failed to fetch users:', error);
     } finally {
@@ -117,7 +116,6 @@ const UserTable = () => {
         </div>
     
 
-      {/* Modal for delete confirmation */}
       {showModal && (
         <div className="modal-overlay">
           <div className="modal">
