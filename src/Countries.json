@@ -1,0 +1,138 @@
+[
+  {
+    "country": "India",
+    "cities": [
+      {
+        "name": "Delhi",
+        "pincode": "110001"
+      },
+      {
+        "name": "Mumbai",
+        "pincode": "400001"
+      },
+      {
+        "name": "Chennai",
+        "pincode": "600001"
+      },
+      {
+        "name": "Bangalore",
+        "pincode": "560001"
+      },
+       {
+        "name": "Coimbatore",
+        "pincode": "641001"
+      },
+      {
+        "name": "Madurai",
+        "pincode": "625001"
+      },
+      {
+        "name": "Tiruchirappalli",
+        "pincode": "620001"
+      },
+      {
+        "name": "Salem",
+        "pincode": "636001"
+      },
+      {
+        "name": "Tirunelveli",
+        "pincode": "627001"
+      },
+      {
+        "name": "Erode",
+        "pincode": "638001"
+      },
+      {
+        "name": "Vellore",
+        "pincode": "632001"
+      },
+      {
+        "name": "Thoothukudi",
+        "pincode": "628001"
+      },
+      {
+        "name": "Thanjavur",
+        "pincode": "613001"
+      },
+      {
+        "name": "Dindigul",
+        "pincode": "624001"
+      },
+      {
+        "name": "Cuddalore",
+        "pincode": "607001"
+      },
+      {
+        "name": "Kanchipuram",
+        "pincode": "631501"
+      },
+      {
+        "name": "Kumbakonam",
+        "pincode": "612001"
+      }
+    ]
+  },
+  {
+    "country": "USA",
+    "cities": [
+      {
+        "name": "New York",
+        "pincode": "10001"
+      },
+      {
+        "name": "Los Angeles",
+        "pincode": "90001"
+      },
+      {
+        "name": "Chicago",
+        "pincode": "60601"
+      },
+      {
+        "name": "Houston",
+        "pincode": "77001"
+      }
+    ]
+  },
+  {
+    "country": "UK",
+    "cities": [
+      {
+        "name": "London",
+        "pincode": "EC1A 1BB"
+      },
+      {
+        "name": "Manchester",
+        "pincode": "M1 1AE"
+      },
+      {
+        "name": "Birmingham",
+        "pincode": "B1 1AA"
+      },
+      {
+        "name": "Liverpool",
+        "pincode": "L1 8JQ"
+      }
+    ]
+  },
+  {
+    "country": "Canada",
+    "cities": [
+      {
+        "name": "Toronto",
+        "pincode": "M5H 2N2"
+      },
+      {
+        "name": "Vancouver",
+        "pincode": "V5K 0A1"
+      },
+      {
+        "name": "Montreal",
+        "pincode": "H2X 1Y4"
+      },
+      {
+        "name": "Calgary",
+        "pincode": "T2P 1J9"
+      }
+    ]
+  }
+]
