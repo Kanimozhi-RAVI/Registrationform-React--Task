@@ -23,7 +23,7 @@
 }
 
 .logo {
-  font-size: 50px;
+  font-size: 80px;
   margin-bottom: 20px;
 }
 
@@ -59,7 +59,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 50px;
+  padding: 20px 50px;
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
   border-top-left-radius: 340px;
@@ -225,4 +225,15 @@ button[type="submit"] {
   color: red;
   font-size: 12px;
   margin-top: 4px;
+}
+.show-user{
+  background-color: indigo;
+  color: white;
+  padding: 12px 10px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  width:45%;
+  transition: background 0.3s;
 }

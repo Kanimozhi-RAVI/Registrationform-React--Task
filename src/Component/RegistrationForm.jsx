@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 import countries from '../Countries.json';
 import './RegistrationForm.css';
 
@@ -12,46 +14,12 @@ const RegistrationForm = () => {
   const [countriesData, setCountriesData] = useState([]);
   const [cities, setCities] = useState([]);
   const [userId, setUserId] = useState(null);
-  const [errors, setErrors] = useState({});
-
-
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    age: '',
-    dob: '',
-    gender: '',
-    address: '',
-    country: '',
-    city: '',
-    pincode: ''
-  });
-const validateForm = () => {
-  const newErrors = {};
-
-  if (formData.fullName.trim() === "") newErrors.fullName = 'Full name is required';
-  if (formData.email.trim() === "") newErrors.email = 'Email is required';
-  else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Invalid email format';
-
-  if (formData.age === "") newErrors.age = 'Age is required';
-  else if (formData.age < 1) newErrors.age = 'Age must be at least 1';
-
-  if (formData.dob === "") newErrors.dob = 'Date of Birth is required';
-  if (formData.gender === "") newErrors.gender = 'Gender is required';
-  if (formData.address.trim() === "") newErrors.address = 'Address is required';
-  if (formData.country === "") newErrors.country = 'Country is required';
-  if (formData.city === "") newErrors.city = 'City is required';
-  if (formData.pincode === "") newErrors.pincode = 'Pincode is required';
-
-  return newErrors;
-};
 
   useEffect(() => {
     setCountriesData(countries);
 
     const editUser = JSON.parse(localStorage.getItem('editUser'));
     if (editUser) {
-      setFormData(editUser);
       setUserId(editUser.id || null);
 
       const countryData = countries.find(c => c.country === editUser.country);
@@ -61,77 +29,48 @@ const validateForm = () => {
     }
   }, []);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const Schema = Yup.object().shape({
+    fullName: Yup.string().required('Full name is required'),
+    email: Yup.string().email('Invalid email format').required('Email is required'),
+    age: Yup.number().min(1, 'Age must be at least 1').required('Age is required'),
+    dob: Yup.string().required('Date of Birth is required'),
+    gender: Yup.string().required('Gender is required'),
+    address: Yup.string().required('Address is required'),
+    country: Yup.string().required('Country is required'),
+    city: Yup.string().required('City is required'),
+    pincode: Yup.string().required('Pincode is required'),
+  });
 
-    if (name === 'country') {
-      const countryData = countries.find(c => c.country === value);
-      setCities(countryData ? countryData.cities : []);
-      setFormData({ ...formData, country: value, city: '', pincode: '' });
-    } else if (name === 'city') {
-      const cityData = cities.find(c => c.name === value);
-      setFormData({ ...formData, city: value, pincode: cityData?.pincode || '' });
-    } else {
-      setFormData({ ...formData, [name]: value });
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+    const dataToSend = { ...values, age: Number(values.age) };
+
+    try {
+      const response = userId
+        ? await fetch(`${API_URL}/${userId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dataToSend),
+          })
+        : await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dataToSend),
+          });
+
+      if (!response.ok) throw new Error('Failed to save data');
+
+      toast.success(userId ? 'User updated successfully!' : 'Registration successful!');
+      resetForm();
+      setTimeout(() => navigate('/users'), 2000);
+    } catch (error) {
+      console.error('Error saving data:', error);
+      toast.error('Failed to save data. Please try again.');
+    } finally {
+      setSubmitting(false);
     }
   };
 
- const [loading, setLoading] = useState(false);
-
-const handleSubmit = async (e) => {
-  e.preventDefault();
-
-  if (loading) return; 
-
-  const validationErrors = validateForm();
-  if (Object.keys(validationErrors).length > 0) {
-    setErrors(validationErrors);
-    toast.error('Please fill all the detailes');
-    return;
-  }
-
-  setErrors({});
-  setLoading(true); 
-
-  const dataToSend = {
-    ...formData,
-    age: Number(formData.age),
-  };
-
-  try {
-    const response = userId
-      ? await fetch(`${API_URL}/${userId}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(dataToSend),
-        })
-      : await fetch(API_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(dataToSend),
-        });
-
-    if (!response.ok) throw new Error('Failed to save data');
-
-    setFormData({
-      fullName: '', email: '', age: '', dob: '',
-      gender: '', address: '', country: '', city: '', pincode: ''
-    });
-
-    toast.success(userId ? 'User updated successfully!' : 'Registration successful!');
-    setTimeout(() => navigate('/users'), 2000);
-  } catch (error) {
-    console.error('Error saving data:', error);
-    toast.error('Failed to save data. Please try again.');
-  } finally {
-    setLoading(false); 
-  }
-};
-
-const showUser= ()=> {
-  navigate('/users')
-}
-
+  const showUser = () => navigate('/users');
 
   return (
     <div className="register-container">
@@ -147,152 +86,135 @@ const showUser= ()=> {
         <div className="register-right">
           <div className="register-form">
             <h2>{userId ? 'Update User' : 'Registration Form'}</h2>
-            <form onSubmit={handleSubmit}>
-              <div className="form-row">
-                <div className="form-group">
-                  <label>Full Name</label>
-                  <input
-                    name="fullName"
-                    value={formData.fullName}
-                    onChange={handleChange}
-                    placeholder="Enter your Name"
-                  
-                  />
-                  {errors.fullName && <small className="error">{errors.fullName}</small>}
-                </div>
-                <div className="form-group">
-                  <label>Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="Enter your valid Email"
-                  />
-                  {errors.email && <small className="error">{errors.email}</small>}         
-                </div>
-              </div>
 
-              <div className="form-row">
-                <div className="form-group">
-                  <label>Age</label>
-                  <input
-                    type="number"
-                    name="age"
-                    value={formData.age}
-                    onChange={handleChange}
-                    placeholder="Enter your Age"
-                  />
-                  {errors.age && <small className="error">{errors.age}</small>}
-                </div>
-                <div className="form-group">
-                  <label>Date of Birth</label>
-                  <input
-                    type="date"
-                    name="dob"
-                    value={formData.dob}
-                    onChange={handleChange}
-                  
-                  />
-                  {errors.dob && <small className="error">{errors.dob}</small>}
-                </div>
-              </div>
+            <Formik
+              initialValues={{
+                fullName: '',
+                email: '',
+                age: '',
+                dob: '',
+                gender: '',
+                address: '',
+                country: '',
+                city: '',
+                pincode: '',
+              }}
+              validationSchema={Schema}
+              onSubmit={handleSubmit}
+              enableReinitialize
+            >
+              {({ values, setFieldValue, isSubmitting }) => (
+                <Form>
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label>Full Name</label>
+                      <Field name="fullName" placeholder="Enter your Name" />
+                      <ErrorMessage name="fullName" component="small" className="error" />
+                    </div>
+                    <div className="form-group">
+                      <label>Email</label>
+                      <Field name="email" type="email" placeholder="Enter your valid Email" />
+                      <ErrorMessage name="email" component="small" className="error" />
+                    </div>
+                  </div>
 
-              <div className="form-row gender-row">
-                <label>Gender</label>
-                <div className="gender-group">
-                  <label>
-                    <input
-                      type="radio"
-                      name="gender"
-                      value="Male"
-                      checked={formData.gender === 'Male'}
-                      onChange={handleChange}
-                    />
-                    Male
-                  </label>
-                  <label>
-                    <input
-                      type="radio"
-                      name="gender"
-                      value="Female"
-                      checked={formData.gender === 'Female'}
-                      onChange={handleChange}
-                    />
-                    Female
-                  </label>
-                  {errors.gender && <small className="error">{errors.gender}</small>}
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label>Age</label>
+                      <Field name="age" type="number" placeholder="Enter your Age" />
+                      <ErrorMessage name="age" component="small" className="error" />
+                    </div>
+                    <div className="form-group">
+                      <label>Date of Birth</label>
+                      <Field name="dob" type="date" />
+                      <ErrorMessage name="dob" component="small" className="error" />
+                    </div>
+                  </div>
 
-                </div>
-              </div>
+                  <div className="form-row gender-row">
+                    <label>Gender</label>
+                    <div className="gender-group">
+                      <label>
+                        <Field type="radio" name="gender" value="Male" />
+                        Male
+                      </label>
+                      <label>
+                        <Field type="radio" name="gender" value="Female" />
+                        Female
+                      </label>
+                      <ErrorMessage name="gender" component="small" className="error" />
+                    </div>
+                  </div>
 
-              <div className="form-group full">
-                <label>Address: Street</label>
-                <textarea
-                  name="address"
-                  value={formData.address}
-                  onChange={handleChange}
-                  placeholder="Eg: 158, West street.."
-                />
-                {errors.address && <small className="error">{errors.address}</small>}
+                  <div className="form-group full">
+                    <label>Address</label>
+                    <Field as="textarea" name="address" placeholder="Eg: 158, West street.." />
+                    <ErrorMessage name="address" component="small" className="error" />
+                  </div>
 
-              </div>
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label>Country</label>
+                      <Field
+                        as="select"
+                        name="country"
+                        onChange={(e) => {
+                          const selectedCountry = e.target.value;
+                          const countryData = countries.find(c => c.country === selectedCountry);
+                          setCities(countryData ? countryData.cities : []);
+                          setFieldValue("country", selectedCountry);
+                          setFieldValue("city", "");
+                          setFieldValue("pincode", "");
+                        }}
+                      >
+                        <option value="">Select Country</option>
+                        {countriesData.map((c, idx) => (
+                          <option key={idx} value={c.country}>{c.country}</option>
+                        ))}
+                      </Field>
+                      <ErrorMessage name="country" component="small" className="error" />
+                    </div>
 
-              <div className="form-row">
-                <div className="form-group">
-                  <label>Country</label>
-                  <select
-                    name="country"
-                    value={formData.country}
-                    onChange={handleChange}
-                  >
-                    <option value="">Select Country</option>
-                    {countriesData.map((c, idx) => (
-                      <option key={idx} value={c.country}>
-                        {c.country}
-                      </option>
-                    ))}
-                  </select>
-                  {errors.country && <small className="error">{errors.country}</small>}
+                    <div className="form-group">
+                      <label>City</label>
+                      <Field
+                        as="select"
+                        name="city"
+                        onChange={(e) => {
+                          const selectedCity = e.target.value;
+                          const cityData = cities.find(c => c.name === selectedCity);
+                          setFieldValue("city", selectedCity);
+                          setFieldValue("pincode", cityData?.pincode || '');
+                        }}
+                      >
+                        <option value="">Select City</option>
+                        {cities.map((city, idx) => (
+                          <option key={idx} value={city.name}>{city.name}</option>
+                        ))}
+                      </Field>
+                      <ErrorMessage name="city" component="small" className="error" />
+                    </div>
+                  </div>
 
-                </div>
-                <div className="form-group">
-                  <label>City</label>
-                  <select
-                    name="city"
-                    value={formData.city}
-                    onChange={handleChange}
-                  >
-                    <option value="">Select City</option>
-                    {cities.map((city, idx) => (
-                      <option key={idx} value={city.name}>
-                        {city.name}
-                      </option>
-                    ))}
-                  </select>
-                  {errors.city && <small className="error">{errors.city}</small>}
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label>Pincode</label>
+                      <Field name="pincode" readOnly />
+                      <ErrorMessage name="pincode" component="small" className="error" />
+                    </div>
+                  </div>
 
-                </div>
-              </div>
-
-              <div className="form-row">
-                <div className="form-group">
-                  <label>Pincode</label>
-                  <input
-                    name="pincode"
-                    value={formData.pincode}
-                    readOnly
-                  />
-                </div>
-              </div>
-               <div style={{display:"flex", justifyContent:"space-between"}}>
-                <button type="submit" >
-                {userId ? 'Update' : 'Register'}
-              </button>
-              <button type='submit' onClick={showUser} style={{backgroundColor:"indigo"}} >Show user Detailes</button>
-               </div>
-              
-            </form>
+                  <div style={{ display: "flex", justifyContent: "space-between" }}>
+                    <button type="submit" disabled={isSubmitting}>
+                      {userId ? 'Update' : 'Register'}
+                    </button>
+                    <button type="button" onClick={showUser} className='show-user' >
+                      Show User Details
+                    </button>
+                  </div>
+                </Form>
+              )}
+            </Formik>
             <ToastContainer />
           </div>
         </div>
