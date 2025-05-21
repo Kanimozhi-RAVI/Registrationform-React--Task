@@ -12,6 +12,8 @@ const RegistrationForm = () => {
   const [countriesData, setCountriesData] = useState([]);
   const [cities, setCities] = useState([]);
   const [userId, setUserId] = useState(null);
+  const [errors, setErrors] = useState({});
+
 
   const [formData, setFormData] = useState({
     fullName: '',
@@ -24,6 +26,25 @@ const RegistrationForm = () => {
     city: '',
     pincode: ''
   });
+const validateForm = () => {
+  const newErrors = {};
+
+  if (formData.fullName.trim() === "") newErrors.fullName = 'Full name is required';
+  if (formData.email.trim() === "") newErrors.email = 'Email is required';
+  else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Invalid email format';
+
+  if (formData.age === "") newErrors.age = 'Age is required';
+  else if (formData.age < 1) newErrors.age = 'Age must be at least 1';
+
+  if (formData.dob === "") newErrors.dob = 'Date of Birth is required';
+  if (formData.gender === "") newErrors.gender = 'Gender is required';
+  if (formData.address.trim() === "") newErrors.address = 'Address is required';
+  if (formData.country === "") newErrors.country = 'Country is required';
+  if (formData.city === "") newErrors.city = 'City is required';
+  if (formData.pincode === "") newErrors.pincode = 'Pincode is required';
+
+  return newErrors;
+};
 
   useEffect(() => {
     setCountriesData(countries);
@@ -55,44 +76,62 @@ const RegistrationForm = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    console.log("clicked")
-    e.preventDefault();
+ const [loading, setLoading] = useState(false);
 
-    const allFieldsFilled = Object.values(formData).every(val => val !== '');
-    if (!allFieldsFilled) {
-      toast.error('Please fill all fields.');
-      return;
-    }
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    const dataToSend = {
-      ...formData,
-      age: Number(formData.age),
-    };
+  if (loading) return; 
 
-    try {
-      const response = userId
-        ? await fetch(`${API_URL}/${userId}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(dataToSend),
-          })
-        : await fetch(API_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(dataToSend),
-          });
-          setFormData({ fullName: '',  email: '',  age: '',  dob: '', gender: '', address: '', country: '', city: '', pincode: '' });
+  const validationErrors = validateForm();
+  if (Object.keys(validationErrors).length > 0) {
+    setErrors(validationErrors);
+    toast.error('Please fill all the detailes');
+    return;
+  }
 
-      if (!response.ok) throw new Error('Failed to save data');
+  setErrors({});
+  setLoading(true); 
 
-      toast.success(userId ? 'User updated successfully!' : 'Registration successful!');
-      setTimeout(() => navigate('/users'),2000);
-    } catch (error) {
-      console.error('Error saving data:', error);
-      toast.error('Failed to save data. Please try again.');
-    }
+  const dataToSend = {
+    ...formData,
+    age: Number(formData.age),
   };
+
+  try {
+    const response = userId
+      ? await fetch(`${API_URL}/${userId}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dataToSend),
+        })
+      : await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dataToSend),
+        });
+
+    if (!response.ok) throw new Error('Failed to save data');
+
+    setFormData({
+      fullName: '', email: '', age: '', dob: '',
+      gender: '', address: '', country: '', city: '', pincode: ''
+    });
+
+    toast.success(userId ? 'User updated successfully!' : 'Registration successful!');
+    setTimeout(() => navigate('/users'), 2000);
+  } catch (error) {
+    console.error('Error saving data:', error);
+    toast.error('Failed to save data. Please try again.');
+  } finally {
+    setLoading(false); 
+  }
+};
+
+const showUser= ()=> {
+  navigate('/users')
+}
+
 
   return (
     <div className="register-container">
@@ -119,6 +158,7 @@ const RegistrationForm = () => {
                     placeholder="Enter your Name"
                   
                   />
+                  {errors.fullName && <small className="error">{errors.fullName}</small>}
                 </div>
                 <div className="form-group">
                   <label>Email</label>
@@ -127,9 +167,9 @@ const RegistrationForm = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    required
                     placeholder="Enter your valid Email"
                   />
+                  {errors.email && <small className="error">{errors.email}</small>}         
                 </div>
               </div>
 
@@ -141,9 +181,9 @@ const RegistrationForm = () => {
                     name="age"
                     value={formData.age}
                     onChange={handleChange}
-                    required
                     placeholder="Enter your Age"
                   />
+                  {errors.age && <small className="error">{errors.age}</small>}
                 </div>
                 <div className="form-group">
                   <label>Date of Birth</label>
@@ -154,6 +194,7 @@ const RegistrationForm = () => {
                     onChange={handleChange}
                   
                   />
+                  {errors.dob && <small className="error">{errors.dob}</small>}
                 </div>
               </div>
 
@@ -180,6 +221,8 @@ const RegistrationForm = () => {
                     />
                     Female
                   </label>
+                  {errors.gender && <small className="error">{errors.gender}</small>}
+
                 </div>
               </div>
 
@@ -189,9 +232,10 @@ const RegistrationForm = () => {
                   name="address"
                   value={formData.address}
                   onChange={handleChange}
-                  required
                   placeholder="Eg: 158, West street.."
                 />
+                {errors.address && <small className="error">{errors.address}</small>}
+
               </div>
 
               <div className="form-row">
@@ -201,7 +245,6 @@ const RegistrationForm = () => {
                     name="country"
                     value={formData.country}
                     onChange={handleChange}
-                    required
                   >
                     <option value="">Select Country</option>
                     {countriesData.map((c, idx) => (
@@ -210,6 +253,8 @@ const RegistrationForm = () => {
                       </option>
                     ))}
                   </select>
+                  {errors.country && <small className="error">{errors.country}</small>}
+
                 </div>
                 <div className="form-group">
                   <label>City</label>
@@ -217,7 +262,6 @@ const RegistrationForm = () => {
                     name="city"
                     value={formData.city}
                     onChange={handleChange}
-                    required
                   >
                     <option value="">Select City</option>
                     {cities.map((city, idx) => (
@@ -226,6 +270,8 @@ const RegistrationForm = () => {
                       </option>
                     ))}
                   </select>
+                  {errors.city && <small className="error">{errors.city}</small>}
+
                 </div>
               </div>
 
@@ -236,14 +282,16 @@ const RegistrationForm = () => {
                     name="pincode"
                     value={formData.pincode}
                     readOnly
-                    required
                   />
                 </div>
               </div>
-
-              <button type="submit" className=''>
+               <div style={{display:"flex", justifyContent:"space-between"}}>
+                <button type="submit" >
                 {userId ? 'Update' : 'Register'}
               </button>
+              <button type='submit' onClick={showUser} style={{backgroundColor:"indigo"}} >Show user Detailes</button>
+               </div>
+              
             </form>
             <ToastContainer />
           </div>
