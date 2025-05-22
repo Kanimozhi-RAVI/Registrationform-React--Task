@@ -36,17 +36,17 @@ const RegistrationForm = () => {
     }
   }, []);
 
-  const schema = Yup.object().shape({
-    fullName: Yup.string().required('Required'),
-    email: Yup.string().email('Invalid').required('Required'),
-    age: Yup.number().min(1).required('Required'),
-    dob: Yup.string().required('Required'),
-    gender: Yup.string().required('Required'),
-    address: Yup.string().required('Required'),
-    country: Yup.string().required('Required'),
-    state: Yup.string().required('Required'),
-    city: Yup.string().required('Required'),
-    pincode: Yup.string().required('Required'),
+  const validation = Yup.object().shape({
+    fullName: Yup.string().required('Enter your name*'),
+    email: Yup.string().email('Invalid').required('Enter a valid Email*'),
+    age: Yup.number().min(1).required('Enter your age*'),
+    dob: Yup.string().required('Enter your DOB*'),
+    gender: Yup.string().required('Choose your gender*'),
+    address: Yup.string().required('Enter your address*'),
+    country: Yup.string().required('Select your country*'),
+    state: Yup.string().required('Select your state*'),
+    city: Yup.string().required('Select your city*'),
+    pincode: Yup.string().required('Pincode is Required*'),
   });
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
@@ -121,7 +121,7 @@ const RegistrationForm = () => {
 
               <Formik
                 initialValues={initialValues}
-                validationSchema={schema}
+                validationSchema={validation}
                 onSubmit={handleSubmit}
                 enableReinitialize
               >
