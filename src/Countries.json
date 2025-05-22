@@ -1,138 +1,697 @@
 [
   {
     "country": "India",
-    "cities": [
+    "states": [
       {
-        "name": "Delhi",
-        "pincode": "110001"
+        "state": "Maharashtra",
+        "cities": [
+          { "name": "Mumbai", "pincode": "400001" },
+          { "name": "Pune", "pincode": "411001" },
+          { "name": "Nagpur", "pincode": "440001" },
+          { "name": "Nashik", "pincode": "422001" },
+          { "name": "Thane", "pincode": "400601" },
+          { "name": "Aurangabad", "pincode": "431001" },
+          { "name": "Solapur", "pincode": "413001" },
+          { "name": "Amravati", "pincode": "444601" },
+          { "name": "Kolhapur", "pincode": "416001" },
+          { "name": "Jalgaon", "pincode": "425001" },
+          { "name": "Akola", "pincode": "444001" },
+          { "name": "Chandrapur", "pincode": "442401" },
+          { "name": "Latur", "pincode": "413512" },
+          { "name": "Malegaon", "pincode": "423203" },
+          { "name": "Nanded", "pincode": "431601" }
+        ]
       },
       {
-        "name": "Mumbai",
-        "pincode": "400001"
+        "state": "Tamil Nadu",
+        "cities": [
+          { "name": "Chennai", "pincode": "600001" },
+          { "name": "Coimbatore", "pincode": "641001" },
+          { "name": "Madurai", "pincode": "625001" },
+          { "name": "Tiruchirappalli", "pincode": "620001" },
+          { "name": "Salem", "pincode": "636001" },
+          { "name": "Tiruppur", "pincode": "641601" },
+          { "name": "Erode", "pincode": "638001" },
+          { "name": "Vellore", "pincode": "632001" },
+          { "name": "Thoothukudi", "pincode": "628001" },
+          { "name": "Dindigul", "pincode": "624001" },
+          { "name": "Nagercoil", "pincode": "629001" },
+          { "name": "Ranipet", "pincode": "632401" },
+          { "name": "Karur", "pincode": "639002" },
+          { "name": "Tirunelveli", "pincode": "627001" },
+          { "name": "Kanchipuram", "pincode": "631501" }
+        ]
       },
       {
-        "name": "Chennai",
-        "pincode": "600001"
+        "state": "Karnataka",
+        "cities": [
+          { "name": "Bengaluru", "pincode": "560001" },
+          { "name": "Mysuru", "pincode": "570001" },
+          { "name": "Hubballi", "pincode": "580020" },
+          { "name": "Mangalore", "pincode": "575001" },
+          { "name": "Belagavi", "pincode": "590001" },
+          { "name": "Kalaburagi", "pincode": "585101" },
+          { "name": "Davangere", "pincode": "577001" },
+          { "name": "Ballari", "pincode": "583101" },
+          { "name": "Shimoga", "pincode": "577201" },
+          { "name": "Ranebennur", "pincode": "581115" },
+          { "name": "Chikkamagaluru", "pincode": "577101" },
+          { "name": "Tumakuru", "pincode": "572101" },
+          { "name": "Gulbarga", "pincode": "585101" },
+          { "name": "Hassan", "pincode": "573201" },
+          { "name": "Udupi", "pincode": "576101" }
+        ]
       },
       {
-        "name": "Bangalore",
-        "pincode": "560001"
-      },
-       {
-        "name": "Coimbatore",
-        "pincode": "641001"
-      },
-      {
-        "name": "Madurai",
-        "pincode": "625001"
-      },
-      {
-        "name": "Tiruchirappalli",
-        "pincode": "620001"
-      },
-      {
-        "name": "Salem",
-        "pincode": "636001"
-      },
-      {
-        "name": "Tirunelveli",
-        "pincode": "627001"
+        "state": "Uttar Pradesh",
+        "cities": [
+          { "name": "Lucknow", "pincode": "226001" },
+          { "name": "Kanpur", "pincode": "208001" },
+          { "name": "Varanasi", "pincode": "221001" },
+          { "name": "Agra", "pincode": "282001" },
+          { "name": "Meerut", "pincode": "250001" },
+          { "name": "Ghaziabad", "pincode": "201001" },
+          { "name": "Aligarh", "pincode": "202001" },
+          { "name": "Bareilly", "pincode": "243001" },
+          { "name": "Noida", "pincode": "201301" },
+          { "name": "Mathura", "pincode": "281001" },
+          { "name": "Saharanpur", "pincode": "247001" },
+          { "name": "Firozabad", "pincode": "283203" },
+          { "name": "Moradabad", "pincode": "244001" },
+          { "name": "Jhansi", "pincode": "284001" },
+          { "name": "Etawah", "pincode": "206001" }
+        ]
       },
       {
-        "name": "Erode",
-        "pincode": "638001"
+        "state": "West Bengal",
+        "cities": [
+          { "name": "Kolkata", "pincode": "700001" },
+          { "name": "Asansol", "pincode": "713301" },
+          { "name": "Siliguri", "pincode": "734001" },
+          { "name": "Durgapur", "pincode": "713201" },
+          { "name": "Bardhaman", "pincode": "713101" },
+          { "name": "Howrah", "pincode": "711101" },
+          { "name": "Kharagpur", "pincode": "721301" },
+          { "name": "Jalpaiguri", "pincode": "735101" },
+          { "name": "Malda", "pincode": "732101" },
+          { "name": "Raiganj", "pincode": "733134" },
+          { "name": "Tamluk", "pincode": "721636" },
+          { "name": "Berhampore", "pincode": "742101" },
+          { "name": "Balurghat", "pincode": "733101" },
+          { "name": "Diamond Harbour", "pincode": "743331" },
+          { "name": "Bankura", "pincode": "722101" }
+        ]
       },
       {
-        "name": "Vellore",
-        "pincode": "632001"
+        "state": "Gujarat",
+        "cities": [
+          { "name": "Ahmedabad", "pincode": "380001" },
+          { "name": "Surat", "pincode": "395003" },
+          { "name": "Vadodara", "pincode": "390001" },
+          { "name": "Rajkot", "pincode": "360001" },
+          { "name": "Bhavnagar", "pincode": "364001" },
+          { "name": "Jamnagar", "pincode": "361001" },
+          { "name": "Gandhinagar", "pincode": "382010" },
+          { "name": "Junagadh", "pincode": "362001" },
+          { "name": "Anand", "pincode": "388001" },
+          { "name": "Navsari", "pincode": "396445" },
+          { "name": "Nadiad", "pincode": "387001" },
+          { "name": "Valsad", "pincode": "396001" },
+          { "name": "Porbandar", "pincode": "360575" },
+          { "name": "Surendranagar", "pincode": "363001" },
+          { "name": "Bharuch", "pincode": "392001" }
+        ]
       },
       {
-        "name": "Thoothukudi",
-        "pincode": "628001"
+        "state": "Rajasthan",
+        "cities": [
+          { "name": "Jaipur", "pincode": "302001" },
+          { "name": "Jodhpur", "pincode": "342001" },
+          { "name": "Udaipur", "pincode": "313001" },
+          { "name": "Bikaner", "pincode": "334001" },
+          { "name": "Ajmer", "pincode": "305001" },
+          { "name": "Alwar", "pincode": "301001" },
+          { "name": "Sikar", "pincode": "332001" },
+          { "name": "Kota", "pincode": "324001" },
+          { "name": "Bharatpur", "pincode": "321001" },
+          { "name": "Pali", "pincode": "306401" },
+          { "name": "Tonk", "pincode": "304001" },
+          { "name": "Jhunjhunu", "pincode": "333001" },
+          { "name": "Barmer", "pincode": "344001" },
+          { "name": "Chittorgarh", "pincode": "312001" },
+          { "name": "Dungarpur", "pincode": "314001" }
+        ]
       },
       {
-        "name": "Thanjavur",
-        "pincode": "613001"
+        "state": "Bihar",
+        "cities": [
+          { "name": "Patna", "pincode": "800001" },
+          { "name": "Gaya", "pincode": "823001" },
+          { "name": "Muzaffarpur", "pincode": "842001" },
+          { "name": "Bhagalpur", "pincode": "812001" },
+          { "name": "Darbhanga", "pincode": "846001" },
+          { "name": "Bihar Sharif", "pincode": "803101" },
+          { "name": "Purnia", "pincode": "854301" },
+          { "name": "Sitamarhi", "pincode": "843302" },
+          { "name": "Chapra", "pincode": "841301" },
+          { "name": "Munger", "pincode": "811201" },
+          { "name": "Saharsa", "pincode": "852201" },
+          { "name": "Katihar", "pincode": "854105" },
+          { "name": "Motihari", "pincode": "845401" },
+          { "name": "Begusarai", "pincode": "851101" },
+          { "name": "Arrah", "pincode": "802301" }
+        ]
       },
       {
-        "name": "Dindigul",
-        "pincode": "624001"
+        "state": "Punjab",
+        "cities": [
+          { "name": "Ludhiana", "pincode": "141001" },
+          { "name": "Amritsar", "pincode": "143001" },
+          { "name": "Jalandhar", "pincode": "144001" },
+          { "name": "Patiala", "pincode": "147001" },
+          { "name": "Bathinda", "pincode": "151001" },
+          { "name": "Mohali", "pincode": "140301" },
+          { "name": "Hoshiarpur", "pincode": "146001" },
+          { "name": "Pathankot", "pincode": "145001" },
+          { "name": "Moga", "pincode": "142001" },
+          { "name": "Firozepur", "pincode": "152001" },
+          { "name": "Malerkotla", "pincode": "148023" },
+          { "name": "Kapurthala", "pincode": "144601" },
+          { "name": "Barnala", "pincode": "148101" },
+          { "name": "Sangrur", "pincode": "148001" },
+          { "name": "Fazilka", "pincode": "152123" }
+        ]
       },
       {
-        "name": "Cuddalore",
-        "pincode": "607001"
+        "state": "Haryana",
+        "cities": [
+          { "name": "Gurgaon", "pincode": "122001" },
+          { "name": "Faridabad", "pincode": "121001" },
+          { "name": "Panipat", "pincode": "132103" },
+          { "name": "Karnal", "pincode": "132001" },
+          { "name": "Yamunanagar", "pincode": "135001" },
+          { "name": "Rohtak", "pincode": "124001" },
+          { "name": "Sonipat", "pincode": "131001" },
+          { "name": "Hisar", "pincode": "125001" },
+          { "name": "Jind", "pincode": "126102" },
+          { "name": "Panipat", "pincode": "132103" },
+          { "name": "Rewari", "pincode": "123401" },
+          { "name": "Bahadurgarh", "pincode": "124507" },
+          { "name": "Narnaul", "pincode": "123001" },
+          { "name": "Panchkula", "pincode": "134113" },
+          { "name": "Ambala", "pincode": "134003" }
+        ]
       },
       {
-        "name": "Kanchipuram",
-        "pincode": "631501"
+        "state": "Assam",
+        "cities": [
+          { "name": "Guwahati", "pincode": "781001" },
+          { "name": "Silchar", "pincode": "788001" },
+          { "name": "Dibrugarh", "pincode": "786001" },
+          { "name": "Jorhat", "pincode": "785001" },
+          { "name": "Tezpur", "pincode": "784001" },
+          { "name": "Nagaon", "pincode": "782001" },
+          { "name": "Tinsukia", "pincode": "786125" },
+          { "name": "Bongaigaon", "pincode": "783380" },
+          { "name": "Diphu", "pincode": "782460" },
+          { "name": "Dhemaji", "pincode": "787057" },
+          { "name": "Barpeta", "pincode": "781301" },
+          { "name": "Golaghat", "pincode": "785621" },
+          { "name": "Morigaon", "pincode": "782105" },
+          { "name": "Sibsagar", "pincode": "785640" },
+          { "name": "Karimganj", "pincode": "788710" }
+        ]
       },
       {
-        "name": "Kumbakonam",
-        "pincode": "612001"
+        "state": "Odisha",
+        "cities": [
+          { "name": "Bhubaneswar", "pincode": "751001" },
+          { "name": "Cuttack", "pincode": "753001" },
+          { "name": "Rourkela", "pincode": "769001" },
+          { "name": "Berhampur", "pincode": "760001" },
+          { "name": "Sambalpur", "pincode": "768001" },
+          { "name": "Puri", "pincode": "752001" },
+          { "name": "Balasore", "pincode": "756001" },
+          { "name": "Baripada", "pincode": "757001" },
+          { "name": "Bhadrak", "pincode": "756100" },
+          { "name": "Jajpur", "pincode": "755001" },
+          { "name": "Keonjhar", "pincode": "758001" },
+          { "name": "Koraput", "pincode": "764020" },
+          { "name": "Angul", "pincode": "759122" },
+          { "name": "Balangir", "pincode": "767001" },
+          { "name": "Nayagarh", "pincode": "752070" }
+        ]
       }
     ]
   },
-  {
+
+
+ {
     "country": "USA",
+    "states": [
+       {
+    "state": "California",
     "cities": [
-      {
-        "name": "New York",
-        "pincode": "10001"
-      },
-      {
-        "name": "Los Angeles",
-        "pincode": "90001"
-      },
-      {
-        "name": "Chicago",
-        "pincode": "60601"
-      },
-      {
-        "name": "Houston",
-        "pincode": "77001"
-      }
+     [
+  { "name": "Los Angeles", "pincode": "90001" },
+  { "name": "San Diego", "pincode": "92101" },
+  { "name": "San Jose", "pincode": "95101" },
+  { "name": "San Francisco", "pincode": "94101" },
+  { "name": "Fresno", "pincode": "93650" },
+  { "name": "Sacramento", "pincode": "95814" },
+  { "name": "Long Beach", "pincode": "90802" },
+  { "name": "Oakland", "pincode": "94601" },
+  { "name": "Bakersfield", "pincode": "93301" },
+  { "name": "Anaheim", "pincode": "92801" },
+  { "name": "Santa Ana", "pincode": "92701" },
+  { "name": "Riverside", "pincode": "92501" },
+  { "name": "Stockton", "pincode": "95201" },
+  { "name": "Chula Vista", "pincode": "91910" },
+  { "name": "Irvine", "pincode": "92602" }
+]
+
     ]
   },
   {
-    "country": "UK",
+    "state": "Texas",
     "cities": [
-      {
-        "name": "London",
-        "pincode": "EC1A 1BB"
-      },
-      {
-        "name": "Manchester",
-        "pincode": "M1 1AE"
-      },
-      {
-        "name": "Birmingham",
-        "pincode": "B1 1AA"
-      },
-      {
-        "name": "Liverpool",
-        "pincode": "L1 8JQ"
-      }
+  { "name": "Houston", "pincode": "77001" },
+  { "name": "San Antonio", "pincode": "78201" },
+  { "name": "Dallas", "pincode": "75201" },
+  { "name": "Austin", "pincode": "73301" },
+  { "name": "Fort Worth", "pincode": "76101" },
+  { "name": "El Paso", "pincode": "79901" },
+  { "name": "Arlington", "pincode": "76001" },
+  { "name": "Corpus Christi", "pincode": "78401" },
+  { "name": "Plano", "pincode": "75023" },
+  { "name": "Laredo", "pincode": "78040" },
+  { "name": "Lubbock", "pincode": "79401" },
+  { "name": "Garland", "pincode": "75040" },
+  { "name": "Irving", "pincode": "75014" },
+  { "name": "Amarillo", "pincode": "79101" },
+  { "name": "Grand Prairie", "pincode": "75050" }
     ]
   },
   {
-    "country": "Canada",
+    "state": "Florida",
     "cities": [
-      {
-        "name": "Toronto",
-        "pincode": "M5H 2N2"
-      },
-      {
-        "name": "Vancouver",
-        "pincode": "V5K 0A1"
-      },
-      {
-        "name": "Montreal",
-        "pincode": "H2X 1Y4"
-      },
-      {
-        "name": "Calgary",
-        "pincode": "T2P 1J9"
-      }
+    { "name": "Jacksonville", "pincode": "32099" },
+  { "name": "Miami", "pincode": "33101" },
+  { "name": "Tampa", "pincode": "33601" },
+  { "name": "Orlando", "pincode": "32801" },
+  { "name": "St. Petersburg", "pincode": "33701" },
+  { "name": "Hialeah", "pincode": "33002" },
+  { "name": "Tallahassee", "pincode": "32301" },
+  { "name": "Fort Lauderdale", "pincode": "33301" },
+  { "name": "Port St. Lucie", "pincode": "34952" },
+  { "name": "Cape Coral", "pincode": "33904" },
+  { "name": "Pembroke Pines", "pincode": "33023" },
+  { "name": "Hollywood", "pincode": "33020" },
+  { "name": "Gainesville", "pincode": "32601" },
+  { "name": "Miramar", "pincode": "33023" },
+  { "name": "Coral Springs", "pincode": "33065" }
+    ]
+  },
+  {
+    "state": "New York",
+    "cities": [
+       { "name": "New York City", "pincode": "10001" },
+  { "name": "Buffalo", "pincode": "14201" },
+  { "name": "Rochester", "pincode": "14602" },
+  { "name": "Yonkers", "pincode": "10701" },
+  { "name": "Syracuse", "pincode": "13201" },
+  { "name": "Albany", "pincode": "12201" },
+  { "name": "New Rochelle", "pincode": "10801" },
+  { "name": "Mount Vernon", "pincode": "10550" },
+  { "name": "Schenectady", "pincode": "12301" },
+  { "name": "Utica", "pincode": "13501" },
+  { "name": "White Plains", "pincode": "10601" },
+  { "name": "Troy", "pincode": "12180" },
+  { "name": "Niagara Falls", "pincode": "14301" },
+  { "name": "Binghamton", "pincode": "13901" },
+  { "name": "Freeport", "pincode": "11520" }
+    ]
+  },
+  {
+    "state": "Illinois",
+    "cities": [
+      { "name": "Chicago", "pincode": "60601" },
+  { "name": "Aurora", "pincode": "60502" },
+  { "name": "Naperville", "pincode": "60540" },
+  { "name": "Joliet", "pincode": "60431" },
+  { "name": "Rockford", "pincode": "61101" },
+  { "name": "Springfield", "pincode": "62701" },
+  { "name": "Peoria", "pincode": "61602" },
+  { "name": "Elgin", "pincode": "60120" },
+  { "name": "Waukegan", "pincode": "60085" },
+  { "name": "Cicero", "pincode": "60804" },
+  { "name": "Champaign", "pincode": "61820" },
+  { "name": "Bloomington", "pincode": "61701" },
+  { "name": "Arlington Heights", "pincode": "60004" },
+  { "name": "Evanston", "pincode": "60201" },
+  { "name": "Decatur", "pincode": "62521" }
+    ]
+  },
+  {
+    
+  "state": "Pennsylvania",
+  "cities": [
+    { "name": "Philadelphia", "pincode": "19101" },
+    { "name": "Pittsburgh", "pincode": "15201" },
+    { "name": "Allentown", "pincode": "18101" },
+    { "name": "Erie", "pincode": "16501" },
+    { "name": "Reading", "pincode": "19601" },
+    { "name": "Scranton", "pincode": "18501" },
+    { "name": "Bethlehem", "pincode": "18015" },
+    { "name": "Lancaster", "pincode": "17601" },
+    { "name": "Harrisburg", "pincode": "17101" },
+    { "name": "Altoona", "pincode": "16601" },
+    { "name": "York", "pincode": "17401" },
+    { "name": "State College", "pincode": "16801" },
+    { "name": "Wilkes-Barre", "pincode": "18701" },
+    { "name": "Chester", "pincode": "19013" },
+    { "name": "Johnstown", "pincode": "15901" }
+  ]
+},
+{
+  "state": "Ohio",
+  "cities": [
+    { "name": "Columbus", "pincode": "43085" },
+    { "name": "Cleveland", "pincode": "44101" },
+    { "name": "Cincinnati", "pincode": "45201" },
+    { "name": "Toledo", "pincode": "43601" },
+    { "name": "Akron", "pincode": "44301" },
+    { "name": "Dayton", "pincode": "45401" },
+    { "name": "Parma", "pincode": "44129" },
+    { "name": "Canton", "pincode": "44702" },
+    { "name": "Youngstown", "pincode": "44501" },
+    { "name": "Lorain", "pincode": "44052" },
+    { "name": "Hamilton", "pincode": "45011" },
+    { "name": "Springfield", "pincode": "45501" },
+    { "name": "Kettering", "pincode": "45409" },
+    { "name": "Elyria", "pincode": "44035" },
+    { "name": "Lakewood", "pincode": "44107" }
+  ]
+},
+  {
+  "state": "Georgia",
+  "cities": [
+    { "name": "Atlanta", "pincode": "30301" },
+    { "name": "Augusta", "pincode": "30901" },
+    { "name": "Columbus", "pincode": "31901" },
+    { "name": "Savannah", "pincode": "31401" },
+    { "name": "Athens", "pincode": "30601" },
+    { "name": "Sandy Springs", "pincode": "30328" },
+    { "name": "Roswell", "pincode": "30075" },
+    { "name": "Johns Creek", "pincode": "30022" },
+    { "name": "Macon", "pincode": "31201" },
+    { "name": "Albany", "pincode": "31701" },
+    { "name": "Warner Robins", "pincode": "31088" },
+    { "name": "Alpharetta", "pincode": "30004" },
+    { "name": "Marietta", "pincode": "30060" },
+    { "name": "Valdosta", "pincode": "31601" },
+    { "name": "Brookhaven", "pincode": "30319" }
+  ]
+},
+{
+  "state": "North Carolina",
+  "cities": [
+    { "name": "Charlotte", "pincode": "28201" },
+    { "name": "Raleigh", "pincode": "27601" },
+    { "name": "Greensboro", "pincode": "27401" },
+    { "name": "Durham", "pincode": "27701" },
+    { "name": "Winston-Salem", "pincode": "27101" },
+    { "name": "Fayetteville", "pincode": "28301" },
+    { "name": "Cary", "pincode": "27511" },
+    { "name": "High Point", "pincode": "27260" },
+    { "name": "Concord", "pincode": "28025" },
+    { "name": "Asheville", "pincode": "28801" },
+    { "name": "Gastonia", "pincode": "28052" },
+    { "name": "Jacksonville", "pincode": "28540" },
+    { "name": "Chapel Hill", "pincode": "27514" },
+    { "name": "Wilson", "pincode": "27893" },
+    { "name": "Rocky Mount", "pincode": "27801" }
+  ]
+},
+{
+  "state": "Michigan",
+  "cities": [
+    { "name": "Detroit", "pincode": "48201" },
+    { "name": "Grand Rapids", "pincode": "49501" },
+    { "name": "Warren", "pincode": "48088" },
+    { "name": "Sterling Heights", "pincode": "48310" },
+    { "name": "Lansing", "pincode": "48901" },
+    { "name": "Ann Arbor", "pincode": "48104" },
+    { "name": "Flint", "pincode": "48501" },
+    { "name": "Dearborn", "pincode": "48120" },
+    { "name": "Livonia", "pincode": "48150" },
+    { "name": "Troy", "pincode": "48084" },
+    { "name": "Farmington Hills" }
+  ]
+},
+{
+  "state": "California",
+  "cities": [
+    { "name": "Los Angeles", "pincode": "90001" },
+    { "name": "San Diego", "pincode": "92101" },
+    { "name": "San Jose", "pincode": "95101" },
+    { "name": "San Francisco", "pincode": "94101" },
+    { "name": "Fresno", "pincode": "93650" },
+    { "name": "Sacramento", "pincode": "95814" },
+    { "name": "Long Beach", "pincode": "90802" },
+    { "name": "Oakland", "pincode": "94601" },
+    { "name": "Bakersfield", "pincode": "93301" },
+    { "name": "Anaheim", "pincode": "92801" },
+    { "name": "Santa Ana", "pincode": "92701" },
+    { "name": "Riverside", "pincode": "92501" },
+    { "name": "Stockton", "pincode": "95201" },
+    { "name": "Chula Vista", "pincode": "91910" },
+    { "name": "Irvine", "pincode": "92602" }
+  ]
+},
+
+  {
+    "state": "Texas",
+    "cities": [
+      { "name": "Houston", "pincode": "77001" },
+      { "name": "San Antonio", "pincode": "78201" },
+      { "name": "Dallas", "pincode": "75201" },
+      { "name": "Austin", "pincode": "73301" },
+      { "name": "Fort Worth", "pincode": "76101" },
+      { "name": "El Paso", "pincode": "79901" },
+      { "name": "Arlington", "pincode": "76001" },
+      { "name": "Corpus Christi", "pincode": "78401" },
+      { "name": "Plano", "pincode": "75023" },
+      { "name": "Laredo", "pincode": "78040" },
+      { "name": "Lubbock", "pincode": "79401" },
+      { "name": "Garland", "pincode": "75040" },
+      { "name": "Irving", "pincode": "75014" },
+      { "name": "Amarillo", "pincode": "79101" },
+      { "name": "Grand Prairie", "pincode": "75050" }
+    ]
+  },
+  {
+    "state": "Florida",
+    "cities": [
+      { "name": "Jacksonville", "pincode": "32099" },
+      { "name": "Miami", "pincode": "33101" },
+      { "name": "Tampa", "pincode": "33601" },
+      { "name": "Orlando", "pincode": "32801" },
+      { "name": "St. Petersburg", "pincode": "33701" },
+      { "name": "Hialeah", "pincode": "33002" },
+      { "name": "Tallahassee", "pincode": "32301" },
+      { "name": "Fort Lauderdale", "pincode": "33301" },
+      { "name": "Port St. Lucie", "pincode": "34952" },
+      { "name": "Cape Coral", "pincode": "33904" },
+      { "name": "Pembroke Pines", "pincode": "33023" },
+      { "name": "Hollywood", "pincode": "33020" },
+      { "name": "Gainesville", "pincode": "32601" },
+      { "name": "Miramar", "pincode": "33023" },
+      { "name": "Coral Springs", "pincode": "33065" }
+    ]
+  },
+  {
+    "state": "New York",
+    "cities": [
+      { "name": "New York City", "pincode": "10001" },
+      { "name": "Buffalo", "pincode": "14201" },
+      { "name": "Rochester", "pincode": "14602" },
+      { "name": "Yonkers", "pincode": "10701" },
+      { "name": "Syracuse", "pincode": "13201" },
+      { "name": "Albany", "pincode": "12201" },
+      { "name": "New Rochelle", "pincode": "10801" },
+      { "name": "Mount Vernon", "pincode": "10550" },
+      { "name": "Schenectady", "pincode": "12301" },
+      { "name": "Utica", "pincode": "13501" },
+      { "name": "White Plains", "pincode": "10601" },
+      { "name": "Troy", "pincode": "12180" },
+      { "name": "Niagara Falls", "pincode": "14301" },
+      { "name": "Binghamton", "pincode": "13901" },
+      { "name": "Freeport", "pincode": "11520" }
+    ]
+  },
+  {
+    "state": "Illinois",
+    "cities": [
+      { "name": "Chicago", "pincode": "60601" },
+      { "name": "Aurora", "pincode": "60502" },
+      { "name": "Naperville", "pincode": "60540" },
+      { "name": "Joliet", "pincode": "60431" },
+      { "name": "Rockford", "pincode": "61101" },
+      { "name": "Springfield", "pincode": "62701" },
+      { "name": "Peoria", "pincode": "61602" },
+      { "name": "Elgin", "pincode": "60120" },
+      { "name": "Waukegan", "pincode": "60085" },
+      { "name": "Cicero", "pincode": "60804" },
+      { "name": "Champaign", "pincode": "61820" },
+      { "name": "Bloomington", "pincode": "61701" },
+      { "name": "Arlington Heights", "pincode": "60004" },
+      { "name": "Evanston", "pincode": "60201" },
+      { "name": "Decatur", "pincode": "62521" }
+    ]
+  },
+  {
+    "state": "Pennsylvania",
+    "cities": [
+      { "name": "Philadelphia", "pincode": "19101" },
+      { "name": "Pittsburgh", "pincode": "15201" },
+      { "name": "Allentown", "pincode": "18101" },
+      { "name": "Erie", "pincode": "16501" },
+      { "name": "Reading", "pincode": "19601" },
+      { "name": "Scranton", "pincode": "18501" },
+      { "name": "Bethlehem", "pincode": "18015" },
+      { "name": "Lancaster", "pincode": "17601" },
+      { "name": "Harrisburg", "pincode": "17101" },
+      { "name": "Altoona", "pincode": "16601" },
+      { "name": "York", "pincode": "17401" },
+      { "name": "State College", "pincode": "16801" },
+      { "name": "Wilkes-Barre", "pincode": "18701" },
+      { "name": "Chester", "pincode": "19013" },
+      { "name": "Johnstown", "pincode": "15901" }
+    ]
+  },
+  {
+    "state": "Ohio",
+    "cities": [
+      { "name": "Columbus", "pincode": "43085" },
+      { "name": "Cleveland", "pincode": "44101" },
+      { "name": "Cincinnati", "pincode": "45201" },
+      { "name": "Toledo", "pincode": "43601" },
+      { "name": "Akron", "pincode": "44301" },
+      { "name": "Dayton", "pincode": "45401" },
+      { "name": "Parma", "pincode": "44129" },
+      { "name": "Canton", "pincode": "44702" },
+      { "name": "Youngstown", "pincode": "44501" },
+      { "name": "Lorain", "pincode": "44052" },
+      { "name": "Hamilton", "pincode": "45011" },
+      { "name": "Springfield", "pincode": "45501" },
+      { "name": "Kettering", "pincode": "45409" },
+      { "name": "Elyria", "pincode": "44035" },
+      { "name": "Lakewood", "pincode": "44107" }
+    ]
+  },
+  {
+    "state": "Georgia",
+    "cities": [
+      { "name": "Atlanta", "pincode": "30301" },
+      { "name": "Augusta", "pincode": "30901" },
+      { "name": "Columbus", "pincode": "31901" },
+      { "name": "Savannah", "pincode": "31401" },
+      { "name": "Athens", "pincode": "30601" },
+      { "name": "Sandy Springs", "pincode": "30328" },
+      { "name": "Roswell", "pincode": "30075" },
+      { "name": "Johns Creek", "pincode": "30022" },
+      { "name": "Macon", "pincode": "31201" },
+      { "name": "Albany", "pincode": "31701" },
+      { "name": "Warner Robins", "pincode": "31088" },
+      { "name": "Alpharetta", "pincode": "30004" },
+      { "name": "Marietta", "pincode": "30060" },
+      { "name": "Valdosta", "pincode": "31601" },
+      { "name": "Brookhaven", "pincode": "30319" }
+    ]
+  },
+  {
+    "state": "North Carolina",
+    "cities": [
+      { "name": "Charlotte", "pincode": "28201" },
+      { "name": "Raleigh", "pincode": "27601" },
+      { "name": "Greensboro", "pincode": "27401" },
+      { "name": "Durham", "pincode": "27701" },
+      { "name": "Winston-Salem", "pincode": "27101" },
+      { "name": "Fayetteville", "pincode": "28301" },
+      { "name": "Cary", "pincode": "27511" },
+      { "name": "Wilmington", "pincode": "28401" },
+      { "name": "High Point", "pincode": "27260" },
+      { "name": "Greenville", "pincode": "27834" },
+      { "name": "Asheville", "pincode": "28801" },
+      { "name": "Concord", "pincode": "28027" },
+      { "name": "Gastonia", "pincode": "28052" },
+      { "name": "Jacksonville", "pincode": "28540" },
+      { "name": "Chapel Hill", "pincode": "27514" }
+    ]
+  },
+
+  {
+    "state": "Georgia",
+    "cities": [
+      { "name": "Atlanta", "pincode": "30301" },
+      { "name": "Augusta", "pincode": "30901" },
+      { "name": "Columbus", "pincode": "31901" },
+      { "name": "Savannah", "pincode": "31401" },
+      { "name": "Athens", "pincode": "30601" },
+      { "name": "Sandy Springs", "pincode": "30328" },
+      { "name": "Roswell", "pincode": "30075" },
+      { "name": "Johns Creek", "pincode": "30022" },
+      { "name": "Macon", "pincode": "31201" },
+      { "name": "Albany", "pincode": "31701" },
+      { "name": "Warner Robins", "pincode": "31088" },
+      { "name": "Alpharetta", "pincode": "30004" },
+      { "name": "Marietta", "pincode": "30060" },
+      { "name": "Valdosta", "pincode": "31601" },
+      { "name": "Brookhaven", "pincode": "30319" }
+    ]
+  },
+  {
+    "state": "North Carolina",
+    "cities": [
+      { "name": "Charlotte", "pincode": "28201" },
+      { "name": "Raleigh", "pincode": "27601" },
+      { "name": "Greensboro", "pincode": "27401" },
+      { "name": "Durham", "pincode": "27701" },
+      { "name": "Winston-Salem", "pincode": "27101" },
+      { "name": "Fayetteville", "pincode": "28301" },
+      { "name": "Cary", "pincode": "27511" },
+      { "name": "High Point", "pincode": "27260" },
+      { "name": "Concord", "pincode": "28025" },
+      { "name": "Asheville", "pincode": "28801" },
+      { "name": "Gastonia", "pincode": "28052" },
+      { "name": "Jacksonville", "pincode": "28540" },
+      { "name": "Chapel Hill", "pincode": "27514" },
+      { "name": "Wilson", "pincode": "27893" },
+      { "name": "Rocky Mount", "pincode": "27801" }
+    ]
+  },
+  {
+    "state": "Michigan",
+    "cities": [
+      { "name": "Detroit", "pincode": "48201" },
+      { "name": "Grand Rapids", "pincode": "49501" },
+      { "name": "Warren", "pincode": "48088" },
+      { "name": "Sterling Heights", "pincode": "48310" },
+      { "name": "Lansing", "pincode": "48901" },
+      { "name": "Ann Arbor", "pincode": "48104" },
+      { "name": "Flint", "pincode": "48501" },
+      { "name": "Dearborn", "pincode": "48120" },
+      { "name": "Livonia", "pincode": "48150" },
+      { "name": "Troy", "pincode": "48084" },
+      { "name": "Farmington Hills", "pincode": "48331" },
+      { "name": "Kalamazoo", "pincode": "49001" },
+      { "name": "Wyoming", "pincode": "49509" },
+      { "name": "Southfield", "pincode": "48075" },
+      { "name": "Rochester Hills", "pincode": "48307" }
     ]
   }
+    ]
+  }
+
 ]
