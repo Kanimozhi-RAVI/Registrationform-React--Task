@@ -101,6 +101,15 @@ const RegistrationForm = () => {
     setFieldValue("city", selected);
     setFieldValue("pincode", cityData?.pincode || '');
   };
+  const userdata = () => {
+    setLoading(true);
+
+    // simulate async operation, then navigate
+    setTimeout(() => {
+      navigate('/users');
+    }, 1000); // wait 1 second before navigating
+  };
+
 
   return (
     <>
@@ -218,9 +227,14 @@ const RegistrationForm = () => {
                       <button type="submit" disabled={isSubmitting}>
                         {userId ? 'Update' : 'Register'}
                       </button>
-                      <button type="button" onClick={() => navigate('/users')} className='show-user'>
+                     
+                     <div>
+                       <button type="button" onClick={userdata} className='show-user'>
+                         
                         Show User Details
                       </button>
+                       {loading && <Loading />}
+                     </div>
                     </div>
                   </Form>
                 )}

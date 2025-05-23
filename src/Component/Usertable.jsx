@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom'; // ✅ added useLocation
+import { useNavigate, useLocation } from 'react-router-dom'; 
 import './Usertable.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -13,7 +13,7 @@ const UserTable = () => {
   const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
-  const location = useLocation(); // ✅
+  const location = useLocation();
 
   const fetchUsers = async () => {
     try {
@@ -28,10 +28,9 @@ const UserTable = () => {
     }
   };
 
-  // ✅ Fetch users whenever page location changes
   useEffect(() => {
     fetchUsers();
-  }, [location]); // 👈 Triggers fetch when navigating back from form
+  }, [location]);
 
   const handleEdit = (user) => {
     localStorage.setItem('editUser', JSON.stringify(user));
@@ -48,7 +47,7 @@ const UserTable = () => {
       await fetch(`${API_URL}/${userToDelete.id}`, { method: 'DELETE' });
       setShowModal(false);
       setUserToDelete(null);
-      fetchUsers(); // ✅ Refresh list after deletion
+      fetchUsers(); 
     } catch (error) {
       console.error('Failed to delete user:', error);
     }
@@ -60,7 +59,7 @@ const UserTable = () => {
   };
 
   const addUser = () => {
-    localStorage.removeItem('editUser'); // ✅ clear any leftover edits
+    localStorage.removeItem('editUser'); 
     navigate('/formdata');
   };
 
@@ -120,7 +119,6 @@ const UserTable = () => {
         </table>
       </div>
 
-      {/* Confirm Delete Modal */}
       {showModal && (
         <div className="modal-overlay">
           <div className="modal">
