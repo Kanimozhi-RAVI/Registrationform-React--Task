@@ -4,7 +4,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import 'react-toastify/dist/ReactToastify.css';
-
 import countries from '../Countries.json';
 import './RegistrationForm.css';
 import Loading from './Loading';
@@ -52,64 +51,75 @@ const RegistrationForm = () => {
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     setLoading(true);
     try {
-      const response = await fetch(
-        `${API_URL}/${userId || ''}`,
-        {
-          method: userId ? 'PUT' : 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ...values, age: Number(values.age) }),
-        }
-      );
+      const response = await fetch(`${API_URL}/${userId || ''}`, {
+        method: userId ? 'PUT' : 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...values, age: Number(values.age) }),
+      });
 
       if (!response.ok) throw new Error();
 
-      toast.success(userId ? 'User updated!' : 'Registered successfully!');
       resetForm();
 
-      setTimeout(() => navigate('/users'), 2000);
+      toast.success(userId ? 'User updated!' : 'Registered successfully!', {
+        autoClose: 2000,
+        onClose: () => {
+          setLoading(false);
+          navigate('/users');
+        }
+      });
+
     } catch {
-      toast.error('Something went wrong!');
-      setLoading(false);
+      toast.error('Something went wrong!', {
+        autoClose: 2000,
+        onClose: () => setLoading(false)
+      });
     } finally {
       setSubmitting(false);
     }
   };
 
-  const handleCountryChange = (e, setFieldValue) => {
+  const handleCountryChange = (e, setFieldValue, handleChange) => {
+    handleChange(e);
     const selected = e.target.value;
     const countryData = countries.find(c => c.country === selected);
     setStates(countryData?.states || []);
     setCities([]);
-    setFieldValue("country", selected);
-    setFieldValue("state", "");
-    setFieldValue("city", "");
-    setFieldValue("pincode", "");
   };
 
-  const handleStateChange = (e, setFieldValue) => {
+  const handleStateChange = (e, setFieldValue, handleChange) => {
+    handleChange(e);
     const selected = e.target.value;
     const stateData = states.find(s => s.state === selected);
     setCities(stateData?.cities || []);
-    setFieldValue("state", selected);
-    setFieldValue("city", "");
-    setFieldValue("pincode", "");
   };
 
-  const handleCityChange = (e, setFieldValue) => {
-    const selected = e.target.value;
-    const cityData = cities.find(c => c.name === selected);
-    setFieldValue("city", selected);
-    setFieldValue("pincode", cityData?.pincode || '');
+  const handleCityChange = async (e, setFieldValue, setFieldTouched, validateField) => {
+    const selectedCity = e.target.value;
+    await setFieldValue("city", selectedCity);
+    setFieldTouched("city", true);
+    await validateField("city");
+    const cityData = cities.find(city => city.name === selectedCity);
+    await setFieldValue("pincode", cityData?.pincode || '');
   };
+
   const userdata = () => {
     setLoading(true);
-
-    // simulate async operation, then navigate
     setTimeout(() => {
       navigate('/users');
-    }, 1000); // wait 1 second before navigating
+    }, 1000);
   };
 
+  const calculateAge = (dob) => {
+    const birthDate = new Date(dob);
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  };
 
   return (
     <>
@@ -134,80 +144,103 @@ const RegistrationForm = () => {
                 onSubmit={handleSubmit}
                 enableReinitialize
               >
-                {({ values, setFieldValue, isSubmitting }) => (
+                {({ setFieldValue, isSubmitting, handleChange, setFieldTouched, validateField, values }) => (
                   <Form>
-                    {/* Basic Info */}
                     <div className="form-row">
                       <div className="form-group">
                         <label>Full Name</label>
                         <Field name="fullName" />
-                        <ErrorMessage name="fullName" component="small" className="error" />
+                        <ErrorMessage name="fullName" component="div" className="error" />
                       </div>
                       <div className="form-group">
                         <label>Email</label>
                         <Field name="email" type="email" />
-                        <ErrorMessage name="email" component="small" className="error" />
+                        <ErrorMessage name="email" component="div" className="error" />
                       </div>
                     </div>
 
                     <div className="form-row">
                       <div className="form-group">
-                        <label>Age</label>
-                        <Field name="age" type="number" />
-                        <ErrorMessage name="age" component="small" className="error" />
-                      </div>
-                      <div className="form-group">
                         <label>Date of Birth</label>
-                        <Field name="dob" type="date" />
-                        <ErrorMessage name="dob" component="small" className="error" />
+                        <input
+                          name="dob"
+                          type="date"
+                          value={values.dob}
+                          onChange={(e) => {
+                            const dob = e.target.value;
+                            setFieldValue('dob', dob);
+                            if (dob) {
+                              const age = calculateAge(dob);
+                              if (!isNaN(age) && age >= 0) {
+                                setFieldValue('age', age);
+                              } else {
+                                setFieldValue('age', '');
+                              }
+                            } else {
+                              setFieldValue('age', '');
+                            }
+                          }}
+                        />
+                        <ErrorMessage name="dob" component="div" className="error" />
+                      </div>
+
+                      <div className="form-group">
+                        <label>Age</label>
+                        <Field
+                          name="age"
+                          type="number"
+                          readOnly
+                        />
+                        <ErrorMessage name="age" component="div" className="error" />
                       </div>
                     </div>
 
-                    {/* Gender */}
-                    <div className="form-row gender-row">
+                    <div className="form-group full">
                       <label>Gender</label>
                       <div className="gender-group">
                         <label><Field type="radio" name="gender" value="Male" /> Male</label>
                         <label><Field type="radio" name="gender" value="Female" /> Female</label>
-                        <ErrorMessage name="gender" component="small" className="error" />
                       </div>
+                      <ErrorMessage name="gender" component="div" className="error" />
                     </div>
 
-                    {/* Address */}
                     <div className="form-group full">
                       <label>Address</label>
                       <Field as="textarea" name="address" />
-                      <ErrorMessage name="address" component="small" className="error" />
+                      <ErrorMessage name="address" component="div" className="error" />
                     </div>
 
-                    {/* Location Dropdowns */}
                     <div className="form-row">
                       <div className="form-group">
                         <label>Country</label>
-                        <Field as="select" name="country" onChange={(e) => handleCountryChange(e, setFieldValue)}>
+                        <Field as="select" name="country" onChange={(e) => handleCountryChange(e, setFieldValue, handleChange)}>
                           <option value="">Select Country</option>
                           {countries.map((c, idx) => (
                             <option key={idx} value={c.country}>{c.country}</option>
                           ))}
                         </Field>
-                        <ErrorMessage name="country" component="small" className="error" />
+                        <ErrorMessage name="country" component="div" className="error" />
                       </div>
                       <div className="form-group">
                         <label>State</label>
-                        <Field as="select" name="state" onChange={(e) => handleStateChange(e, setFieldValue)}>
+                        <Field as="select" name="state" onChange={(e) => handleStateChange(e, setFieldValue, handleChange)}>
                           <option value="">Select State</option>
                           {states.map((s, idx) => (
                             <option key={idx} value={s.state}>{s.state}</option>
                           ))}
                         </Field>
-                        <ErrorMessage name="state" component="small" className="error" />
+                        <ErrorMessage name="state" component="div" className="error" />
                       </div>
                     </div>
 
                     <div className="form-row">
                       <div className="form-group">
                         <label>City</label>
-                        <Field as="select" name="city" onChange={(e) => handleCityChange(e, setFieldValue)}>
+                        <Field
+                          as="select"
+                          name="city"
+                          onChange={(e) => handleCityChange(e, setFieldValue, setFieldTouched, validateField)}
+                        >
                           <option value="">Select City</option>
                           {cities.map((c, idx) => (
                             <option key={idx} value={c.name}>{c.name}</option>
@@ -218,23 +251,17 @@ const RegistrationForm = () => {
                       <div className="form-group">
                         <label>Pincode</label>
                         <Field name="pincode" readOnly />
-                        <ErrorMessage name="pincode" component="small" className="error" />
+                        <ErrorMessage name="pincode" component="div" className="error" />
                       </div>
                     </div>
 
-                    {/* Submit */}
-                    <div style={{ display: "flex", justifyContent: "space-between" }}>
-                      <button type="submit" disabled={isSubmitting}>
+                    <div style={{ display: "flex", justifyContent: "space-between", marginTop: "5px" }}>
+                      <button type="submit" disabled={isSubmitting} className='button-reg'>
                         {userId ? 'Update' : 'Register'}
                       </button>
-                     
-                     <div>
-                       <button type="button" onClick={userdata} className='show-user'>
-                         
+                      <button type="button" onClick={userdata} className='show-user'>
                         Show User Details
                       </button>
-                       {loading && <Loading />}
-                     </div>
                     </div>
                   </Form>
                 )}
